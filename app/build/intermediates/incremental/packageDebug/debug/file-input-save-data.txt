@@ -1,0 +1,7 @@
+#Internal package file, do not edit.
+#Tue Aug 04 19:33:46 SGT 2020
+0.baseType=DIRECTORY
+0.base=E\:\\Practical 4\\HelloToast\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+0.path=classes.dex
+0.set=DEX
+count=1
