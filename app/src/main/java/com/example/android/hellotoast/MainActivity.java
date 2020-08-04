@@ -21,7 +21,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.EditText;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,15 +36,25 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
 
     public static final String EXTRA_MESSAGE = "com.example.android.hellotoast.extra.MESSAGE";
-    private static final String LOG_TAG = MainActivity.class.getSimpleName();
     private int mCount = 0;
     private TextView mShowCount;
+    private Button toastButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mShowCount = (TextView) findViewById(R.id.show_count);
+        mShowCount = (TextView)findViewById(R.id.show_count);
+        toastButton = (Button) findViewById(R.id.button_toast);
+
+        toastButton.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View view){
+                Intent intent = new Intent(MainActivity.this,SecondActivity.class);
+                String message = mShowCount.getText().toString();
+                intent.putExtra(EXTRA_MESSAGE, message);
+                startActivity(intent);
+            }
+        });
     }
 
     /*
@@ -73,11 +83,4 @@ public class MainActivity extends AppCompatActivity {
             mShowCount.setText(Integer.toString(mCount));
     }
 
-    public void launchSecondActivity(View view) {
-        Log.d(LOG_TAG, "Button clicked!");
-        Intent intent = new Intent(this, SecondActivity.class);
-        startActivity(intent);
-        String message = mShowCount.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-    }
 }
